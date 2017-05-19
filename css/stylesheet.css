@@ -1,0 +1,105 @@
+@font-face {
+    font-family:"Cookie";
+    src: url("../fonts/Cookie-Regular.ttf") /* TTF file for CSS3 browsers */
+}
+@font-face {
+    font-family:"Raleway";
+    src: url("../fonts/Raleway-Regular.ttf") /* TTF file for CSS3 browsers */
+}
+@font-face {
+    font-family:"Alegreya Sans SC";
+    src: url("../fonts/AlegreyaSansSC-Light.ttf") /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+    font-family:"Quicksand";
+    src: url("../fonts/Quicksand-Regular.ttf") /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+    font-family:"Quicksand Light";
+    src: url("../fonts/Quicksand-Light.ttf") /* TTF file for CSS3 browsers */
+}
+
+html,
+body
+{
+    width: 100%;
+    height: 100%;
+}
+
+.no-gutter{
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    font: normal 50px 'Cookie', cursive;
+    margin: 20px auto;
+}
+
+#comment{
+    text-align: center;
+    font: normal 50px 'Cookie', cursive;
+    margin: 50px auto;
+}
+
+.btn{
+    font-family: 'Raleway', sans-serif;
+    margin: 10px auto;
+    padding: 0;
+    height: 40px;
+    width: 100px !important;
+    background-color: #73C2FB;
+}
+
+.panel-body{
+    padding: 0;
+}
+
+.cover{
+   height: 250px;
+   width: 100%;
+   background-color: #73C2FB;
+}
+
+.incover{
+   height: 100px;
+   width: 100%;
+   background-color: #73C2FB;
+}
+
+.big{
+    font: normal 50px 'Quicksand Light', sans-serif;
+    color: #FFF;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.small{
+    font: normal 30px 'Quicksand', sans-serif;
+    color: #FFF;
+    text-align: center;
+}
+
+.smaller{
+    font: normal 20px 'Quicksand', sans-serif;
+    color: #FFF;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#date{
+    font: normal 40px 'Quicksand', sans-serif;
+    color: #FFF;
+    text-align: center;
+    padding-top: 0;
+}
+
+.Register{
+    color: #000;
+    text-align: center;
+    font: normal 15px 'Raleway', sans-serif;
+    display: block;
+}
