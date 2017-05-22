@@ -22,7 +22,7 @@
     <body>
         <div class="container-fluid no-gutter">
             <div class="incover"> 
-                <div id="time"> </div>
+                <div id="time" class="small"> </div>
                 <div id="date"> </div>
             </div>
         </div>

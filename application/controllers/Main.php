@@ -35,29 +35,29 @@ class Main extends CI_Controller {
         {
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-            $date = date('M d, Y');
-            echo $date;
+            $data['datenow'] = date('M d, Y');
+            $data['timestamp'] = date('Y-m-d H:i:s');
+            echo json_encode($data);
         }
         
         public function time()
         {
+            $data = array();
             header('Access-Control-Allow-Origin: *');
-       header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-            $time = date('h:i:s A');
-            echo $time;
-        }
-        
-        public function datetime()
-        {
-            header('Access-Control-Allow-Origin: *');
-       header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-            $date = new DateTime();
-            echo $date->getTimestamp();
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            $data['time'] = date('h:i:s A');
+            $data['hour'] = date('h');
+            $data['minute'] = date('i');
+            $data['seconds'] = date('s');
+            $data['am_pm'] = date('A');
+            echo json_encode($data);
+            exit;
         }
         
         public function login(){
             header('Access-Control-Allow-Origin: *');
-       header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            
             $this->load->model('DbQuery');
             $list = $this->DbQuery->login($_POST);
             echo json_encode($list);

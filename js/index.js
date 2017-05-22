@@ -9,48 +9,88 @@ var db;
 $(document).ready(function(){
     $.ajax({
         type: 'POST',
-        url: '/index.php/main/date',
-        timeout: 1000,
+        url: 'http://timekeeping.dev.ph/index.php/main/date',
+        crossDomain: true,
+        contentType: "application/json; charset=utf-8",
+        async: false,
         success: function(data) {
-            $("#date").html(data);
-            $("#date").val(data);
+            console.log(data);
+            $("#date").html(data.datenow);
+            $("#date").val(data.datenow);
+            $("#timestamp").val(data.timestamp);
         },
     });
 
     $.ajax({
         type: 'POST',
-        url: '/index.php/main/time',
+        url: 'http://timekeeping.dev.ph/index.php/main/time',
         timeout: 1000,
-        success: function(data) {
-            $("#time").val(data); 
-            $("#time").html(data); 
+        crossDomain: true,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        success: function(data) 
+        {
+            console.log(data);
+            
+            datetime = (data.timestamp)
+            $("#time").val(data.time);
+            var hour = (data.hour);
+            var min = (data.minute);
+            var sec = (data.seconds);
+            var ap = (data.am_pm);
+            
+            var m = min * 1;
+            var s = sec * 1;
+            
+            setInterval(function(){ 
+                                
+                if(s < 60){
+                    s++;
+                }else if (s === 60){
+                    m++;
+                    s=0;
+                }
+                
+                if(m === 60){
+                    h++;
+                }
+                
+                if(hour > 12){
+                   h = hour % 12; 
+                }
+                
+//                m = checkTime(m);
+//                s = checkTime(s);
+                
+                document.getElementById('time').innerHTML = hour + ":" + m + ":" + s + " " + ap;
+            }, 1000);
+            
+            //var serverTime = data;
+            //var serverOffset = serverTime - getClientTime();
+            
+            //displayTime(serverTime, serverOffset);
         },
     });
-
-    $.ajax({
-        type: 'POST',
-        url: '/index.php/main/datetime',
-        timeout: 1000,
-        success: function(data) {
-            $("#datetime").val(data); 
-        },
-    });
     
-    
-    
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
     
     $("#Login").click(function () {
         var Username = $("#Username").val();
         var Password = $("#Password").val();
         var TimeIn = $("#time").val();
         var DateLog = $("#date").val();
-        var datetime = $("#datetime").val();
+        //var datetime = $("#timestamp").val();
         //var dataString = "Username=" + Username + "Password=" + Password;
         if ($.trim(Username).length > 0 & $.trim(Password).length > 0) {
             $.ajax({
                 type: "POST",
                 url: "/index.php/main/login",
-                data: {
+                data: 
+                {
                     "Username":Username, 
                     "Password":Password
                 },
@@ -60,12 +100,11 @@ $(document).ready(function(){
                 beforeSend: function () { $("#Login").html('Connecting...'); },
                 success: function (success) {
                     console.log(success);
-                    if (toString.call(success) === '[object Array]') {
-                        
-                        //timein(TimeIn, Username, datetime, Date);
-                        console.log(TimeIn);
-                        //window.location.assign("http://timekeeping.dev.ph/index.php/Main/home");
-
+                    if (success) 
+                    {
+                        timein(TimeIn, Username, datetime, DateLog);
+                        alert("Login Successfull! \nTime In: " + TimeIn);
+                        //window.location.assign("http://timekeeping.dev.ph/index.php/main/home");
                     }
                     else {
                         alert("Wrong Username or Password!");
@@ -78,22 +117,28 @@ $(document).ready(function(){
         }
     });
     
-    function timein(TimeIn, Username, datetime, DateLog){
-        var Timestamp = strtotime(datetime);
-        $.ajax({
-        type: 'POST',
-        url: '/index.php/main/timein',
-        data: {
-            "Username":Username, 
-            "TimeIn": TimeIn,
-            "Timestamp": Timestamp,
-            "DateLog": DateLog,
-            "datetime": datetime
-        },
-        timeout: 1000,
-        success: function(data) {
-            alert("Login Successfull! \nTime In: " + TimeIn);
-        },
-    });
+    function timein(TimeIn, Username, datetime, DateLog)
+    {
+        //var Timestamp = strtotime(datetime);
+        
+        console.log(TimeIn, Username, datetime, DateLog);
+        /*$.ajax(
+        {
+            type: 'POST',
+            url: '/index.php/main/timein',
+            data: 
+            {
+                "Username":Username, 
+                "TimeIn": TimeIn,
+                "DateLog": DateLog,
+                "datetime": datetime
+            },
+            timeout: 1000,
+            success: function(data) 
+            {
+                alert("Login Successfull! \nTime In: " + TimeIn);
+            },
+        });*/
     }
+
 });

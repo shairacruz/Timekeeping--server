@@ -11,7 +11,7 @@ class DbQuery extends CI_Model {
     
     public function login($data){
         extract($data);
-        $sql = "SELECT * FROM accounts WHERE Username = ? AND Password = ? LIMIT 1";
+        $sql = "SELECT * FROM accounts WHERE Username = ? AND Password = ?";
         $query = $this->pdo->query($sql, array($Username, $Password));
 
         if($query -> num_rows() == 1)
@@ -26,8 +26,8 @@ class DbQuery extends CI_Model {
     
     public function timein($data){
         extract($data);
-        $sql = "INSERT INTO schedule ('LogID', 'Username', 'datetime', 'DateLog', 'TimeIn', 'TimeOut') "
-                . "VALUES (DEFAULT,?,?,?,?,?)";
+        $sql = "INSERT INTO schedule ('LogID', 'Username', 'datetime', 'DateLog', 'TimeIn') "
+                . "VALUES (DEFAULT,?,?,?,?)";
         $query = $this->pdo->query($sql, array($Username, $datetime, $DateLog, $TimeIn, $TimeOut));
     }
 }

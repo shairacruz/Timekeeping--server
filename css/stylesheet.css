@@ -71,16 +71,17 @@ h1{
 }
 
 .big{
-    font: normal 50px 'Quicksand Light', sans-serif;
+    font: normal 70px 'Quicksand Light', sans-serif;
     color: #FFF;
     text-align: center;
     padding-top: 60px;
 }
 
 .small{
-    font: normal 30px 'Quicksand', sans-serif;
+    font: normal 40px 'Quicksand', sans-serif;
     color: #FFF;
     text-align: center;
+    padding-top: 10px;
 }
 
 .smaller{
@@ -91,7 +92,7 @@ h1{
 }
 
 #date{
-    font: normal 40px 'Quicksand', sans-serif;
+    font: normal 20px 'Quicksand', sans-serif;
     color: #FFF;
     text-align: center;
     padding-top: 0;
