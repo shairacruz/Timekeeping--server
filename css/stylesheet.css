@@ -42,7 +42,8 @@ h1{
 #comment{
     text-align: center;
     font: normal 50px 'Cookie', cursive;
-    margin: 50px auto;
+    margin-top: 50px;
+    margin-bottom: 10px;
 }
 
 .btn{
@@ -52,6 +53,7 @@ h1{
     height: 40px;
     width: 100px !important;
     background-color: #73C2FB;
+    bottom: 50px;
 }
 
 .panel-body{
@@ -71,7 +73,7 @@ h1{
 }
 
 .big{
-    font: normal 70px 'Quicksand Light', sans-serif;
+    font: normal 50px 'Quicksand Light', sans-serif;
     color: #FFF;
     text-align: center;
     padding-top: 60px;
@@ -86,9 +88,10 @@ h1{
 
 .smaller{
     font: normal 20px 'Quicksand', sans-serif;
-    color: #FFF;
-    text-align: center;
+    color: #000;
     padding-top: 20px;
+    text-align: center;
+    margin: 0;
 }
 
 #date{
@@ -98,9 +101,44 @@ h1{
     padding-top: 0;
 }
 
-.Register{
-    color: #000;
+#Time-In, #Time-Out{
+    display: inline;
+}
+
+.timeLogs{
+    padding: 20px;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #F3F3F3;
     text-align: center;
-    font: normal 15px 'Raleway', sans-serif;
+    width:100%;
+}
+
+.label{
+    font: normal 10px 'Quicksand', sans-serif;
+    border-style: none;
     display: block;
+    background-color: #F3F3F3;
+    color: #000;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.active{
+    color: #73C2FB;
+}
+
+img{
+    height: 30%;
+    width: 30%;
+}
+
+.login{
+    bottom: 20px;
 }

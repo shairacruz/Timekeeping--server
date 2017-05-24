@@ -24,18 +24,28 @@
             <div class="incover"> 
                 <div id="time" class="small"> </div>
                 <div id="date"> </div>
+                <div id="datetime"> </div>
             </div>
         </div>
         
         <div class="container-fluid">
-            <h3 id="comment"> Welcome!</h3>
+            <h3 id="comment"> Good Day!</h3>
         </div>
         
         <div class="container-fluid">
             <div class="col-xs-2"> </div>
             <div class="col-xs-8">
                 <div class="panel-body">
-                    <h3> Time In: &nbsp;</h3> <span id="TimeIn"> </span>
+                    <div class="smaller"> Logged Username: <?php echo $user_id; ?></div>
+                    <input id="user" value="<?php echo $user_id; ?>" type="hidden">
+                    <div class="timeLogs">
+                        <h3 class="smaller"> Time In: &nbsp;
+                            <div class="smaller" id="Time-In"> --:--:-- </div>
+                        </h3>
+                        <h3 class="smaller"> Time Out: &nbsp;
+                            <div class="smaller" id="Time-Out"> --:--:--  </div>
+                        </h3>
+                    </div>
                 </div>
             </div>
             <div class="col-xs-2"> </div>
@@ -46,6 +56,24 @@
                 <div class="Login">
                     <input type="submit" value="Time Out" id="TimeOut" class="btn btn-lg btn-block">
                 </div>
+            </div>
+        </div>
+        
+        <div class="footer container-fluid no-gutter"> 
+            <div class="col-xs-4">
+                <a href="#" class="ui-btn"> <img src="/img/summary.svg" />
+                    <p class="label">Summary</p>
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="#" class="ui-btn"> <img src="/img/today-active.svg" />
+                    <p class="label active">Today</p>
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="#" class="ui-btn"> <img src="/img/acc.svg" />
+                    <p class="label">Account</p>
+                </a>
             </div>
         </div>
 

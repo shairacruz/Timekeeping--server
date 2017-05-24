@@ -31,20 +31,14 @@ class Main extends CI_Controller {
             
 	}
         
-        public function date()
-        {
-            header('Access-Control-Allow-Origin: *');
-            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-            $data['datenow'] = date('M d, Y');
-            $data['timestamp'] = date('Y-m-d H:i:s');
-            echo json_encode($data);
-        }
-        
-        public function time()
+        public function datetime()
         {
             $data = array();
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            $data['datetime'] = date('Y-m-d H:i:s');
+            $data['datenow'] = date('M d, Y');
+            $data['dateformat'] = date('Y-m-d');
             $data['time'] = date('h:i:s A');
             $data['hour'] = date('h');
             $data['minute'] = date('i');
@@ -53,6 +47,14 @@ class Main extends CI_Controller {
             echo json_encode($data);
             exit;
         }
+        
+        /*public function getUnixTime(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            $datetime = date('Y-m-d h:i:s A');
+            echo strtotime($datetime);
+            exit;
+        }*/
         
         public function login(){
             header('Access-Control-Allow-Origin: *');
@@ -72,8 +74,61 @@ class Main extends CI_Controller {
             exit;
         }
         
-        public function home(){
-            $this->load->view('homepage');
+        public function timeout(){
+            $this->load->model('DbQuery');
+            $list = $this->DbQuery->timeout($_POST);
+            //$data['product_id'] = $args;
+            echo json_encode($list);
+            exit;
+        }
+        
+        public function status(){
+            $this->load->model('DbQuery');
+            $list = $this->DbQuery->status($_POST);
+            echo json_encode($list);
+            exit;
+        }
+        
+        public function getTimeIn(){
+            $this->load->model('DbQuery');
+            $list = $this->DbQuery->getTimeIn($_POST);
+            echo json_encode($list);
+            exit;
+        }
+        
+        public function getTimeOut(){
+            $this->load->model('DbQuery');
+            $list = $this->DbQuery->getTimeOut($_POST);
+            echo json_encode($list);
+            exit;
+        }
+                
+        public function home_page($args){
+            $data = array();
+            $data['user_id'] = $args;
+            $this->load->view('homepage', $data);
+//            echo $data['user_id'];
+//            exit;
+        }
+        
+        public function checkIn(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            
+            $this->load->model('DbQuery');
+            $list = $this->DbQuery->checkIn($_POST);
+            echo json_encode($list);
+            exit;
+        }
+        
+        public function checkOut(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+            
+            $this->load->model('DbQuery');
+            $list = $this->DbQuery->checkOut($_POST);
+            echo json_encode($list);
+            exit;
         }
 }
 ?>

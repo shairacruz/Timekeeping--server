@@ -9,19 +9,7 @@ var db;
 $(document).ready(function(){
     $.ajax({
         type: 'POST',
-        url: 'http://timekeeping.dev.ph/index.php/main/date',
-        crossDomain: true,
-        contentType: "application/json; charset=utf-8",
-        async: false,
-        success: function(data) {
-            $("#date").html(data);
-            $("#date").val(data);
-        },
-    });
-
-    $.ajax({
-        type: 'POST',
-        url: 'http://timekeeping.dev.ph/index.php/main/time',
+        url: 'http://timekeeping.dev.ph/index.php/main/datetime',
         timeout: 1000,
         crossDomain: true,
         dataType: "json",
@@ -30,19 +18,21 @@ $(document).ready(function(){
         success: function(data) 
         {
             console.log(data);
-            
-            
             $("#time").val(data.time);
+            $("#date").html(data.datenow);
+            $("#datetime").val(data.dateformat);
+            $("#date").val(data.datetime);
             var hour = (data.hour);
             var min = (data.minute);
             var sec = (data.seconds);
             var ap = (data.am_pm);
             
+            var h = hour * 1;
             var m = min * 1;
             var s = sec * 1;
             
             setInterval(function(){ 
-                                
+                
                 if(s < 60){
                     s++;
                 }else if (s === 60){
@@ -54,14 +44,11 @@ $(document).ready(function(){
                     h++;
                 }
                 
-                if(hour > 12){
-                   h = hour % 12; 
-                }
+                m = checkTime(m);
+                s = checkTime(s);
                 
-//                m = checkTime(m);
-//                s = checkTime(s);
-                
-                document.getElementById('time').innerHTML = hour + ":" + m + ":" + s + " " + ap;
+                document.getElementById('time').innerHTML = h + ":" + m + ":" + s + " " + ap;
+                $("#time").val(h + ":" + m + ":" + s + " " + ap);
             }, 1000);
             
             //var serverTime = data;
@@ -70,4 +57,115 @@ $(document).ready(function(){
             //displayTime(serverTime, serverOffset);
         },
     });
+    
+    function checkTime(i) {
+        if (i < 10 && i.length === 1){
+            i = "0" + i
+        };  // add zero in front of numbers < 10
+        return i;
+    }
+    
+    var Username = $("#user").val();
+    var DateNow = $("#datetime").val();
+    
+    $.ajax({
+        type: 'POST',
+        url: 'http://timekeeping.dev.ph/index.php/main/getTimeIn',
+        data: {
+            "Username": Username,
+            "DateNow": DateNow
+        },
+        dataType: "json",
+        success: function (data)
+        {
+            console.log(data);
+            $("#Time-In").html(data[0]["TimeLog"]);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert("Error Occured!");
+        }
+    });
+    
+    $.ajax({
+        type: 'POST',
+        url: 'http://timekeeping.dev.ph/index.php/main/getTimeOut',
+        data: {
+            "Username": Username,
+            "DateNow": DateNow
+        },
+        dataType: "json",
+        success: function (data)
+        {
+            console.log(data);
+            $("#Time-Out").html(data[0]["TimeLog"]);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert("Error Occured!");
+        }
+    });
+    
+    $("#TimeOut").click(function () 
+    {                
+        var Username = $("#user").val();
+        var Datenow = $("#datetime").val();
+        ifOut(Username, Datenow);
+        //timeout(Username, TimeLog);
+    });
+    
+    function ifOut(Username, TimeLog){
+        $.ajax({
+            type: "POST",
+            url: "/index.php/main/checkOut",
+            data: 
+            {
+                "Username":Username, 
+                "TimeLog":TimeLog
+            },
+            crossDomain: true,
+            dataType:"JSON",
+            cache: false,
+            success: function (success) {
+                console.log(success);
+                if (success) 
+                {
+                    timeout();
+                }
+                else {
+                    alert("Time out already recorded today. Logging out account" + success);
+                    window.location.assign("http://timekeeping.dev.ph/index.php/main/index");
+                }
+            }
+        });
+    }
+    
+    function timeout(Username, TimeLog)
+    {
+        var Username = $("#user").val();
+        var TimeLog = $("#date").val();
+        console.log(Username +" - "+ TimeLog);
+        
+        $.ajax(
+        {
+            type: 'POST',
+            url: '/index.php/main/timeout',
+            data: 
+            {
+                "Username":Username, 
+                "TimeLog": TimeLog            
+            },
+            timeout: 1000,
+            success: function(data) 
+            {
+                alert("Successfull time out");
+                window.location.assign("http://timekeeping.dev.ph/index.php/main/index");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown)
+            {
+                alert(XMLHttpRequest + textStatus + errorThrown);
+            }
+        });
+    }
+    
  });
