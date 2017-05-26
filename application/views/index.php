@@ -52,13 +52,13 @@
         <div class="container-fluid">
             <div class="col-xs-12">
                 <div class="Login">
-                    <input type="submit" value="Time In" id="Login" class="btn btn-lg btn-block">
+                    <input type="submit" value="Login" id="Login" class="btn btn-lg btn-block">
                 </div>
             </div>
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/index.js"></script>

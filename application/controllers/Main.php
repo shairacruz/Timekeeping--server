@@ -67,6 +67,8 @@ class Main extends CI_Controller {
         }
         
         public function timein(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
             $this->load->model('DbQuery');
             $list = $this->DbQuery->timein($_POST);
             //$data['product_id'] = $args;
@@ -75,6 +77,8 @@ class Main extends CI_Controller {
         }
         
         public function timeout(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
             $this->load->model('DbQuery');
             $list = $this->DbQuery->timeout($_POST);
             //$data['product_id'] = $args;
@@ -82,14 +86,9 @@ class Main extends CI_Controller {
             exit;
         }
         
-        public function status(){
-            $this->load->model('DbQuery');
-            $list = $this->DbQuery->status($_POST);
-            echo json_encode($list);
-            exit;
-        }
-        
         public function getTimeIn(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
             $this->load->model('DbQuery');
             $list = $this->DbQuery->getTimeIn($_POST);
             echo json_encode($list);
@@ -97,6 +96,8 @@ class Main extends CI_Controller {
         }
         
         public function getTimeOut(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
             $this->load->model('DbQuery');
             $list = $this->DbQuery->getTimeOut($_POST);
             echo json_encode($list);
@@ -104,6 +105,8 @@ class Main extends CI_Controller {
         }
                 
         public function home_page($args){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
             $data = array();
             $data['user_id'] = $args;
             $this->load->view('homepage', $data);
@@ -114,7 +117,6 @@ class Main extends CI_Controller {
         public function checkIn(){
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-            
             $this->load->model('DbQuery');
             $list = $this->DbQuery->checkIn($_POST);
             echo json_encode($list);
@@ -124,7 +126,6 @@ class Main extends CI_Controller {
         public function checkOut(){
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-            
             $this->load->model('DbQuery');
             $list = $this->DbQuery->checkOut($_POST);
             echo json_encode($list);

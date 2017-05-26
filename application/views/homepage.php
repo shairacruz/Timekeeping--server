@@ -33,8 +33,8 @@
         </div>
         
         <div class="container-fluid">
-            <div class="col-xs-2"> </div>
-            <div class="col-xs-8">
+            <div class="col-xs-1"> </div>
+            <div class="col-xs-10">
                 <div class="panel-body">
                     <div class="smaller"> Logged Username: <?php echo $user_id; ?></div>
                     <input id="user" value="<?php echo $user_id; ?>" type="hidden">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-2"> </div>
+            <div class="col-xs-1"> </div>
         </div>
         
         <div class="container-fluid">
@@ -60,18 +60,21 @@
         </div>
         
         <div class="footer container-fluid no-gutter"> 
-            <div class="col-xs-4">
-                <a href="#" class="ui-btn"> <img src="/img/summary.svg" />
+            <div class="col-xs-4 foot-btn">
+                <a href="#" class="ui-btn"> 
+                    <img src="/img/summary.svg" />
                     <p class="label">Summary</p>
                 </a>
             </div>
-            <div class="col-xs-4">
-                <a href="#" class="ui-btn"> <img src="/img/today-active.svg" />
-                    <p class="label active">Today</p>
+            <div class="col-xs-4 foot-btn active">
+                <a href="#" class="ui-btn"> 
+                    <img src="/img/today-active.svg" />
+                    <p class="label">Today</p>
                 </a>
             </div>
-            <div class="col-xs-4">
-                <a href="#" class="ui-btn"> <img src="/img/acc.svg" />
+            <div class="col-xs-4 foot-btn">
+                <a href="#" class="ui-btn"> 
+                    <img src="/img/acc.svg" />
                     <p class="label">Account</p>
                 </a>
             </div>
