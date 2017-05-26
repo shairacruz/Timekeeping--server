@@ -13,7 +13,7 @@ $(document).ready(function(){
     
     $.ajax({
         type: 'POST',
-        url: 'http://timekeeping.dev.ph/index.php/main/datetime',
+        url: 'http://shai.x10.bz/index.php/main/datetime',
         timeout: 1000,
         crossDomain: true,
         dataType: "json",
@@ -48,8 +48,8 @@ $(document).ready(function(){
                     h++;
                 }
                 
-                m = checkTime(m);
-                s = checkTime(s);
+                //m = checkTime(m);
+                //s = checkTime(s);
                 
                 document.getElementById('time').innerHTML = h + ":" + m + ":" + s + " " + ap;
                 $("#time").val(h + ":" + m + ":" + s + " " + ap);
@@ -70,7 +70,7 @@ $(document).ready(function(){
     }
     
     $("#Login").click(function () {
-                
+        var Result;        
         var Username = $("#Username").val();
         var Password = $("#Password").val();
         var TimeLog = $("#date").val();
@@ -78,7 +78,7 @@ $(document).ready(function(){
         if ($.trim(Username).length > 0 & $.trim(Password).length > 0) {
             $.ajax({
                 type: "POST",
-                url: "http://timekeeping.dev.ph/index.php/main/login",
+                url: "http://shai.x10.bz/index.php/main/login",
                 data: 
                 {
                     "Username":Username, 
@@ -92,13 +92,15 @@ $(document).ready(function(){
                     //console.log(success);
                     if (success) 
                     {
+                        Result = "Logging In";
+                        showLogResult(Result);
                         // Save data to sessionStorage
                         sessionStorage.setItem('username', $("#Username").val());
-                        alert("Logging in");
-                        window.location.assign("http://timekeeping.dev.ph/index.php/main/home_page/" + Username);
+                        window.location.assign("http://shai.x10.bz/index.php/main/home_page/" + Username);
                     }
                     else {
-                        alert("Wrong Username or Password!");
+                        Result = "Wrong Username or Password!"
+                        showLogResult(Result);
                         $("#Login").val('Login');
                     }
                 }
@@ -108,4 +110,15 @@ $(document).ready(function(){
         }
     });
    
+   function showLogResult(result) {
+       
+        $("#snackbar").html(result);
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+
+        // Add the "show" class to DIV
+        x.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
 });

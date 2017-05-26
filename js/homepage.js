@@ -14,7 +14,7 @@ $(document).ready(function(){
     function getTime(){
         $.ajax({
             type: 'POST',
-            url: 'http://timekeeping.dev.ph/index.php/main/datetime',
+            url: 'http://shai.x10.bz/index.php/main/datetime',
             timeout: 1000,
             crossDomain: true,
             dataType: "json",
@@ -49,8 +49,8 @@ $(document).ready(function(){
                         h++;
                     }
 
-                    m = checkTime(m);
-                    s = checkTime(s);
+                    //m = checkTime(m);
+                    //s = checkTime(s);
 
                     document.getElementById('time').innerHTML = h + ":" + m + ":" + s + " " + ap;
                     $("#time").val(h + ":" + m + ":" + s + " " + ap);
@@ -72,13 +72,14 @@ $(document).ready(function(){
         return i;
     }
     
+    var Result;
     function getTimeIn(){
         
         var Username = $("#user").val();
         var DateNow = $("#datetime").val();
         $.ajax({
             type: 'POST',
-            url: 'http://timekeeping.dev.ph/index.php/main/getTimeIn',
+            url: 'http://shai.x10.bz/index.php/main/getTimeIn',
             data: {
                 "Username": Username,
                 "DateNow": DateNow
@@ -89,11 +90,15 @@ $(document).ready(function(){
                 if(data.length > 0){
                     $("#Time-In").html(data[0]["TimeLog"]);
                     $("#Log").val("Time Out");
+                    Result = "Success";
+                    showLogResult(Result);
+                    
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown)
             {
-                alert(XMLHttpRequest, textStatus, errorThrown);
+                Result = "Error Occured";
+                showLogResult(Result);
             }
         });
     } 
@@ -104,7 +109,7 @@ $(document).ready(function(){
         var DateNow = $("#datetime").val();
         $.ajax({
             type: 'POST',
-            url: 'http://timekeeping.dev.ph/index.php/main/getTimeOut',
+            url: 'http://shai.x10.bz/index.php/main/getTimeOut',
             data: {
                 "Username": Username,
                 "DateNow": DateNow
@@ -115,11 +120,15 @@ $(document).ready(function(){
                 if(data.length > 0){
                     $("#Time-Out").html(data[0]["TimeLog"]);
                     $("#Log").val("Log Out"); 
+                    Result = "Success";
+                    showLogResult(Result);
+                    
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown)
             {
-                alert("Error Occured!");
+                Result = "Error Occured";
+                showLogResult(Result);
             }
         });
     }
@@ -130,12 +139,48 @@ $(document).ready(function(){
         var Datenow = $("#datetime").val();
         
         if($("#Log").val() === "Time In" ){
-            ifIn(Username, Datenow);
+            bootbox.confirm({ 
+                size: "small",
+                message: "Are you sure?", 
+                callback: function(result){ /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        Result = "Processing Time In";
+                        showLogResult(Result);
+                        ifIn(Username, Datenow);
+                    }else{
+                        
+                    }
+                }
+            });
+            
         }else if($("#Log").val() === "Time Out" ){
-            ifOut(Username, Datenow);
+            bootbox.confirm({ 
+                size: "small",
+                message: "Are you sure?", 
+                callback: function(result){ /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        Result = "Processing Time Out";
+                        showLogResult(Result);
+                        ifOut(Username, Datenow);
+                    }else{
+                        
+                    }
+                }
+            });
         }else{
-            alert("Logging Out");
-            window.location.assign("http://timekeeping.dev.ph/index.php");
+            bootbox.confirm({ 
+                size: "small",
+                message: "Are you sure?", 
+                callback: function(result){ /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        Result = "Logging Out";
+                        showLogResult(Result);
+                        window.location.assign("http://shai.x10.bz/index.php");
+                    }else{
+                        
+                    }
+                }
+            });
         }      
         
     });
@@ -143,7 +188,7 @@ $(document).ready(function(){
     function ifIn(Username, TimeLog){
         $.ajax({
             type: "POST",
-            url: "http://timekeeping.dev.ph/index.php/main/checkIn",
+            url: "http://shai.x10.bz/index.php/main/checkIn",
             data: 
             {
                 "Username":Username, 
@@ -174,7 +219,7 @@ $(document).ready(function(){
         $.ajax(
         {
             type: 'POST',
-            url: 'http://timekeeping.dev.ph/index.php/main/timein',
+            url: 'http://shai.x10.bz/index.php/main/timein',
             data: 
             {
                 "Username":Username, 
@@ -187,7 +232,8 @@ $(document).ready(function(){
             },
             error: function (XMLHttpRequest, textStatus, errorThrown)
             {
-                alert(XMLHttpRequest + textStatus + errorThrown);
+                Result = "Error Occured";
+                showLogResult(Result);
             }
         });
     }
@@ -195,7 +241,7 @@ $(document).ready(function(){
     function ifOut(Username, TimeLog){
         $.ajax({
             type: "POST",
-            url: "http://timekeeping.dev.ph/index.php/main/checkOut",
+            url: "http://shai.x10.bz/index.php/main/checkOut",
             data: 
             {
                 "Username":Username, 
@@ -227,7 +273,7 @@ $(document).ready(function(){
         $.ajax(
         {
             type: 'POST',
-            url: 'http://timekeeping.dev.ph/index.php/main/timeout',
+            url: 'http://shai.x10.bz/index.php/main/timeout',
             data: 
             {
                 "Username":Username, 
@@ -240,11 +286,22 @@ $(document).ready(function(){
             },
             error: function (XMLHttpRequest, textStatus, errorThrown)
             {
-                alert(XMLHttpRequest + textStatus + errorThrown);
+                Result = "Error Occured";
+                showLogResult(Result);
             }
         });
     }
     
-    
+    function showLogResult(result) {
+       
+        $("#snackbar").html(result);
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+
+        // Add the "show" class to DIV
+        x.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
     
  });

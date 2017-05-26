@@ -56,6 +56,8 @@
                 </div>
             </div>
         </div>
+        <!-- The actual snackbar -->
+        <div id="snackbar">  </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="/js/jquery.min.js"></script>

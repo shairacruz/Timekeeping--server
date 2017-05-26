@@ -20,12 +20,18 @@
     </head>
 
     <body>
-        <div class="container-fluid no-gutter">
-            <div class="incover"> 
+        <div class="container-fluid no-gutter incover">
+            <div class="col-xs-12">
                 <div id="time" class="small"> </div>
                 <div id="date"> </div>
                 <div id="datetime"> </div>
             </div>
+        </div>
+        
+        <div class="container-fluid nav">
+            <a href="#" class="ui-btn label active"> Today </a>
+            <a href="#" class="ui-btn label"> Summary </a>
+            <a href="#" class="ui-btn label"> Account </a>
         </div>
         
         <div class="container-fluid">
@@ -59,30 +65,13 @@
             </div>
         </div>
         
-        <div class="footer container-fluid no-gutter"> 
-            <div class="col-xs-4 foot-btn">
-                <a href="#" class="ui-btn"> 
-                    <img src="/img/summary.svg" />
-                    <p class="label">Summary</p>
-                </a>
-            </div>
-            <div class="col-xs-4 foot-btn active">
-                <a href="#" class="ui-btn"> 
-                    <img src="/img/today-active.svg" />
-                    <p class="label">Today</p>
-                </a>
-            </div>
-            <div class="col-xs-4 foot-btn">
-                <a href="#" class="ui-btn"> 
-                    <img src="/img/acc.svg" />
-                    <p class="label">Account</p>
-                </a>
-            </div>
-        </div>
+        <!-- The actual snackbar -->
+        <div id="snackbar"> ... </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootbox.min.js"></script>
         <script src="/js/homepage.js"></script>
         
         <!-- Include all compiled plugins (below), or include individual files as needed -->
