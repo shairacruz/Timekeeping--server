@@ -65,9 +65,9 @@ $(document).ready(function(){
     }
     
     function checkTime(i) {
-        
+        //console.log(i.length);
         if (i < 10){
-            i = "0" + i
+            i = "0" + i;
         }  // add zero in front of numbers < 10
         return i;
     }
@@ -135,7 +135,7 @@ $(document).ready(function(){
             ifOut(Username, Datenow);
         }else{
             alert("Logging Out");
-            window.location.assign("index.html");
+            window.location.assign("http://timekeeping.dev.ph/index.php");
         }      
         
     });
@@ -244,5 +244,7 @@ $(document).ready(function(){
             }
         });
     }
-     
+    
+    
+    
  });
