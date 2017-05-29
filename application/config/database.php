@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-'dsn'	=> 'mysql:host=localhost;dbname=shaix10b_Timekeeping',
+'dsn'	=> 'mysql:host=localhost;dbname=id1802097_timekeeping',
 'hostname' => 'localhost',
-'username' => 'shaix10b_shai',
+'username' => 'id1802097_time_db',
 'password' => 'db123',
-'database' => 'shaix10b_Timekeeping',
+'database' => 'id1802097_timekeeping',
 'dbdriver' => 'pdo',
 'dbprefix' => '',
 'pconnect' => TRUE,
@@ -96,11 +96,11 @@ $db['default'] = array(
 );
 
 $db['pdo'] = array(
-  'dsn'   => 'mysql:host=localhost;dbname=shaix10b_Timekeeping',
+  'dsn'   => 'mysql:host=localhost;dbname=id1802097_timekeeping',
   //'hostname' => 'localhost',
-  'username' => 'shaix10b_shai',
+  'username' => 'id1802097_time_db',
   'password' => 'db123',
-  'database' => 'shaix10b_Timekeeping',
+  'database' => 'id1802097_timekeeping',
   'dbdriver' => 'pdo',
   'dbprefix' => '',
   'pconnect' => FALSE,

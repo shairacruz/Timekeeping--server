@@ -14,7 +14,7 @@ $(document).ready(function(){
     function getTime(){
         $.ajax({
             type: 'POST',
-            url: 'http://shai.x10.bz/index.php/main/datetime',
+            url: 'http://shairayvonnecruz028.000webhostapp.com/index.php/main/datetime',
             timeout: 1000,
             crossDomain: true,
             dataType: "json",
@@ -79,7 +79,7 @@ $(document).ready(function(){
         var DateNow = $("#datetime").val();
         $.ajax({
             type: 'POST',
-            url: 'http://shai.x10.bz/index.php/main/getTimeIn',
+            url: 'http://shairayvonnecruz028.000webhostapp.com/index.php/main/getTimeIn',
             data: {
                 "Username": Username,
                 "DateNow": DateNow
@@ -109,7 +109,7 @@ $(document).ready(function(){
         var DateNow = $("#datetime").val();
         $.ajax({
             type: 'POST',
-            url: 'http://shai.x10.bz/index.php/main/getTimeOut',
+            url: 'http://shairayvonnecruz028.000webhostapp.com/index.php/main/getTimeOut',
             data: {
                 "Username": Username,
                 "DateNow": DateNow
@@ -175,7 +175,7 @@ $(document).ready(function(){
                     if(result){
                         Result = "Logging Out";
                         showLogResult(Result);
-                        window.location.assign("http://shai.x10.bz/index.php");
+                        window.location.assign("http://shairayvonnecruz028.000webhostapp.com/index.php");
                     }else{
                         
                     }
@@ -188,7 +188,7 @@ $(document).ready(function(){
     function ifIn(Username, TimeLog){
         $.ajax({
             type: "POST",
-            url: "http://shai.x10.bz/index.php/main/checkIn",
+            url: "http://shairayvonnecruz028.000webhostapp.com/index.php/main/checkIn",
             data: 
             {
                 "Username":Username, 
@@ -219,7 +219,7 @@ $(document).ready(function(){
         $.ajax(
         {
             type: 'POST',
-            url: 'http://shai.x10.bz/index.php/main/timein',
+            url: 'http://shairayvonnecruz028.000webhostapp.com/index.php/main/timein',
             data: 
             {
                 "Username":Username, 
@@ -241,7 +241,7 @@ $(document).ready(function(){
     function ifOut(Username, TimeLog){
         $.ajax({
             type: "POST",
-            url: "http://shai.x10.bz/index.php/main/checkOut",
+            url: "http://shairayvonnecruz028.000webhostapp.com/index.php/main/checkOut",
             data: 
             {
                 "Username":Username, 
@@ -273,7 +273,7 @@ $(document).ready(function(){
         $.ajax(
         {
             type: 'POST',
-            url: 'http://shai.x10.bz/index.php/main/timeout',
+            url: 'http://shairayvonnecruz028.000webhostapp.com/index.php/main/timeout',
             data: 
             {
                 "Username":Username, 
